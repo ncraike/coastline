@@ -6,8 +6,9 @@ from .. import secrets as secrets_module
 from .. import envstate as envstate_module
 
 from .helpers import CliState, GroupWithAliasMap
-from . import sqs
-from . import terraform
+from .sqs import cli as sqs_cli
+from .tag import cli as tag_cli
+from .terraform import cli as terraform_cli
 
 DEFAULT_CONFIG_PATH = './config.json'
 DEFAULT_ENV = 'development'
@@ -69,5 +70,6 @@ def debug():
     click.echo(secrets)
     click.echo(envstate)
 
-cli.add_command(sqs.cli)
-cli.add_command(terraform.cli)
+cli.add_command(sqs_cli)
+cli.add_command(terraform_cli)
+cli.add_command(tag_cli)
