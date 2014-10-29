@@ -9,6 +9,7 @@ from .helpers import CliState, GroupWithAliasMap
 from .sqs import cli as sqs_cli
 from .tag import cli as tag_cli
 from .terraform import cli as terraform_cli
+from .cloudformation import cli as cloudformation_cli
 
 DEFAULT_CONFIG_PATH = './config.json'
 DEFAULT_ENV = 'development'
@@ -18,7 +19,10 @@ DEFAULT_STATE_PATH = './state.json'
 @click.group(
         name='coastline',
         cls=GroupWithAliasMap,
-        alias_map={'tf': 'terraform'}
+        alias_map={
+            'tf': 'terraform',
+            'cf': 'cloudformation',
+        }
 )
 @click.option(
         '--config-path', '-c',
@@ -73,3 +77,4 @@ def debug():
 cli.add_command(sqs_cli)
 cli.add_command(terraform_cli)
 cli.add_command(tag_cli)
+cli.add_command(cloudformation_cli)
